@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Spam Classifier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Email Spam Classifier 📧</h1>
+        <p class="subtitle">
+         Enter your email message below and check whether it is
+        <span>SPAM</span> or <span>HAM</span>.
+        </p>
+
+        <form method="POST">
+
+            <textarea
+                name="message"
+                placeholder="Enter your email/message here..."
+                required>
+            </textarea>
+
+            <br>
+
+            <button type="submit">
+                Check Message
+            </button>
+
+        </form>
+
+        {% if prediction %}
+
+           <div class="result">
+               {% if prediction == "SPAM ❌" %}
+                   <h2 style="color:red;">{{ prediction }}</h2>
+               {% elif prediction == "HAM ✅" %}
+                   <h2 style="color:green;">{{ prediction }}</h2>
+               {% endif %}
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
